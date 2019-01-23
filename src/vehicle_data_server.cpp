@@ -9,10 +9,10 @@ bool vehicle_status(user_story_one::vehicle_data::Request  &req,
 {
    std::ifstream infile;
    std::string timestamp;
+   std::string file_name = "/home/sarangp1/catkin_ws/src/user_story_one/src/can_data.csv";
    bool ret_val = true;
    
-   ROS_INFO("Ready to receive inputs from client.");
-   infile.open("/home/sarangp1/catkin_ws/src/user_story_one/src/can_data.csv",std::ios::in);
+   infile.open(file_name,std::ios::in);
    if(infile)
    {
       while(!infile.eof())
@@ -28,26 +28,15 @@ bool vehicle_status(user_story_one::vehicle_data::Request  &req,
 
         if(timestamp == req.timestamp)
         {  
-          //ROS_INFO("Request: timestamp=%s",(std::string)req.timestamp);
-          /*std::cout<<"Request: timestamp="<<req.timestamp<<std::endl;
-          ROS_INFO("Sending back response:\n");
-          ROS_INFO("msg_id:                      %s", (std::string)res.msg_id);
-          ROS_INFO("vehicle_speed:               %s", (std::string)res.vehicle_speed);
-          ROS_INFO("engine_speed:                %s", res.engine_speed);
-          ROS_INFO("driver_door_status:          %s", res.driver_door_status);
-          ROS_INFO("front_passenger_door_status: %s", res.front_passenger_door_status);
-          ROS_INFO("rear_left_door_status:       %s", res.rear_left_door_status);
-          ROS_INFO("rear_right_door_status:      %s", res.rear_right_door_status); */
-
-	  std::cout<<"Request: timestamp="<<req.timestamp<<std::endl;
-          std::cout<<"Sending back response:\n";
-          std::cout<<"msg_id:                      " <<res.msg_id<<std::endl;
-          std::cout<<"vehicle_speed:               " <<res.vehicle_speed<<std::endl;
-          std::cout<<"engine_speed:                " <<res.engine_speed<<std::endl;
-          std::cout<<"driver_door_status:          " <<res.driver_door_status<<std::endl;
-          std::cout<<"front_passenger_door_status: " <<res.front_passenger_door_status<<std::endl;
-          std::cout<<"rear_left_door_status:       " <<res.rear_left_door_status<<std::endl;
-          std::cout<<"rear_right_door_status:      " <<res.rear_right_door_status<<std::endl;
+      	  std::cout<<"Request: timestamp="<<req.timestamp<<std::endl;
+          std::cout<<"Sending back response:"<<std::endl;
+          std::cout<<"msg_id:                  " <<res.msg_id<<std::endl
+                   <<"vehicle_speed:               " <<res.vehicle_speed<<std::endl
+                   <<"engine_speed:                " <<res.engine_speed<<std::endl
+                   <<"driver_door_status:          " <<res.driver_door_status<<std::endl
+                   <<"front_passenger_door_status: " <<res.front_passenger_door_status<<std::endl
+                   <<"rear_left_door_status:       " <<res.rear_left_door_status<<std::endl
+                   <<"rear_right_door_status:      " <<res.rear_right_door_status;
           break;
         }
       }
@@ -66,6 +55,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   ros::ServiceServer service = n.advertiseService("vehicle_data", vehicle_status);
+  ROS_INFO("Ready to receive inputs from client.");
   ros::spin();
   return 0;
 }
