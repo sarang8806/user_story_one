@@ -1,0 +1,7 @@
+string msg_id
+string vehicle_speed
+string engine_speed
+string driver_door_status
+string front_passenger_door_status
+string rear_left_door_status
+string rear_right_door_status

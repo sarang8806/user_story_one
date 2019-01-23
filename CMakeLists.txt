@@ -9,6 +9,7 @@ project(user_story_one)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  rospy
   std_msgs
   message_generation
 )
@@ -47,11 +48,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+   FILES
+   data.msg
+ )
 
 ## Generate services in the 'srv' folder
 add_service_files(
@@ -67,10 +67,10 @@ add_service_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -196,3 +196,11 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(vehicle_data_server src/vehicle_data_server.cpp)
+target_link_libraries(vehicle_data_server ${catkin_LIBRARIES})
+add_dependencies(vehicle_data_server user_story_one_generate_messages_cpp)
+
+add_executable(vehicle_data_client src/vehicle_data_client.cpp)
+target_link_libraries(vehicle_data_client ${catkin_LIBRARIES})
+add_dependencies(vehicle_data_client user_story_one_generate_messages_cpp)
