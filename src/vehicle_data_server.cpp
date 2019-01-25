@@ -10,7 +10,6 @@ bool vehicle_status(user_story_one::vehicle_data::Request  &req,
    std::ifstream infile;
    std::string timestamp;
    std::string file_name = "/home/sarangp1/catkin_ws/src/user_story_one/src/can_data.csv";
-   bool ret_val = true;
    
    infile.open(file_name,std::ios::in);
    if(infile)
@@ -30,23 +29,30 @@ bool vehicle_status(user_story_one::vehicle_data::Request  &req,
         {  
       	  std::cout<<"Request: timestamp="<<req.timestamp<<std::endl;
           std::cout<<"Sending back response:"<<std::endl;
-          std::cout<<"msg_id:                  " <<res.msg_id<<std::endl
+          std::cout<<"msg_id:                      " <<res.msg_id<<std::endl
                    <<"vehicle_speed:               " <<res.vehicle_speed<<std::endl
                    <<"engine_speed:                " <<res.engine_speed<<std::endl
                    <<"driver_door_status:          " <<res.driver_door_status<<std::endl
                    <<"front_passenger_door_status: " <<res.front_passenger_door_status<<std::endl
                    <<"rear_left_door_status:       " <<res.rear_left_door_status<<std::endl
-                   <<"rear_right_door_status:      " <<res.rear_right_door_status;
+                   <<"rear_right_door_status:      " <<res.rear_right_door_status<<std::endl;
           break;
         }
+      }
+      infile.close();
+      if(timestamp != req.timestamp)
+      {
+	ROS_INFO("No Matching Timestamp");
+        return false;
       }
    }
    else
    {
      ROS_INFO("File open error");
-     ret_val = false;
+     return false;
    }
-   return ret_val;
+
+   return true;
 }
 
 int main(int argc, char **argv)

@@ -19,17 +19,17 @@ int main(int argc, char **argv)
   srv.request.timestamp = (std::string)argv[1];
   if (client.call(srv))
   {
-    std::cout<<"Msg_id:               "<< srv.response.msg_id<<std::endl
+    std::cout<<"Msg_id:                      "<< srv.response.msg_id<<std::endl
              <<"Vehicle speed:               "<< srv.response.vehicle_speed<<std::endl
-             <<"Engine speed:                "<< (std::string)srv.response.engine_speed<<std::endl
-            <<"Driver door status:          "<< (std::string)srv.response.driver_door_status<<std::endl
-             <<"Front passenger door status: "<< srv.response.front_passenger_door_status<<std::endl
+             <<"Engine speed:                "<< srv.response.engine_speed<<std::endl
+             <<"Driver door status:          "<< srv.response.driver_door_status<<std::endl
+            <<"Front passenger door status: "<< srv.response.front_passenger_door_status<<std::endl
              <<"Rear left door status:       "<< srv.response.rear_left_door_status<<std::endl
              <<"Rear right door status:      "<< srv.response.rear_right_door_status<<std::endl;
   }
   else
   {
-    ROS_ERROR("Failed to call service vehicle_data");
+    ROS_ERROR("Failed to call service vehicle_data or unknown timestamp entered");
     return 1;
   }
 
