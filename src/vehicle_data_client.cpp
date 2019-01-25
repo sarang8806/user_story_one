@@ -23,7 +23,7 @@ int main(int argc, char **argv)
              <<"Vehicle speed:               "<< srv.response.vehicle_speed<<std::endl
              <<"Engine speed:                "<< srv.response.engine_speed<<std::endl
              <<"Driver door status:          "<< srv.response.driver_door_status<<std::endl
-            <<"Front passenger door status: "<< srv.response.front_passenger_door_status<<std::endl
+             <<"Front passenger door status: "<< srv.response.front_passenger_door_status<<std::endl
              <<"Rear left door status:       "<< srv.response.rear_left_door_status<<std::endl
              <<"Rear right door status:      "<< srv.response.rear_right_door_status<<std::endl;
   }

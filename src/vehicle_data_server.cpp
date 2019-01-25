@@ -27,7 +27,7 @@ bool vehicle_status(user_story_one::vehicle_data::Request  &req,
 
         if(timestamp == req.timestamp)
         {  
-      	  std::cout<<"Request: timestamp="<<req.timestamp<<std::endl;
+      	  std::cout<<"Request: timestamp = "<<req.timestamp<<std::endl;
           std::cout<<"Sending back response:"<<std::endl;
           std::cout<<"msg_id:                      " <<res.msg_id<<std::endl
                    <<"vehicle_speed:               " <<res.vehicle_speed<<std::endl
