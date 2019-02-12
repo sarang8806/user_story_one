@@ -9,3 +9,5 @@ To RUN this package,
 
 3) Run "rosrun user_story_one vehicle_data_client @timestamp" command in another terminal. This is for running client node and please 
 replace @timestamp with timestamp vale (ex: 8420777).
+
+NOTE: Make sure workspace related and file path related changes are done.
